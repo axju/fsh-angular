@@ -1,6 +1,6 @@
-<h2>Snippets</h2>
-<ul class="snippet">
-  <li *ngFor="let snippet of snippets">
-    <span class="badge">{{snippet.id}}</span> {{snippet.title}}
-  </li>
-</ul>
+<div class="card mb-3" *ngFor="let snippet of snippets">
+  <h3 class="card-header">{{snippet.title}}</h3>
+  <div class="card-body p-0" [innerHTML]="snippet.highlighted | safeHtml">
+  </div>
+  <div class="card-footer">Footer</div>
+</div>

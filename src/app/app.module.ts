@@ -5,13 +5,13 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SnippetsComponent } from './components/snippets/snippets.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { SafeHtmlPipe } from './safe-html';
 
 @NgModule({
   declarations: [
     AppComponent,
     SnippetsComponent,
-    NavbarComponent
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
