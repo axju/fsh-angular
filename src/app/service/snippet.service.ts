@@ -21,7 +21,7 @@ export class SnippetService {
     return this.http.get<Snippet[]>(this.URL)
   }
 
-  getSnippetOfDay(): Observable<Snippet[]> {
-    return this.http.get<Snippet[]>(this.URL + 'today')
+  getSnippetOfDay(): Observable<Snippet> {
+    return this.http.get<Snippet>(this.URL + 'today')
   }
 }

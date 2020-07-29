@@ -7,15 +7,15 @@
     <!-- Links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/snippet-of-day" routerLinkActive="active">Snippets</a>
+        <a class="nav-link" routerLink="/snippet-of-day" routerLinkActive="active">Snippet of the day</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/snippets" routerLinkActive="active">Snippets</a>
+        <a class="nav-link" routerLink="/snippets" routerLinkActive="active">All Snippets</a>
       </li>
     </ul>
 
   </nav>
   <div class="container">
-    <app-snippets></app-snippets>
+    <router-outlet></router-outlet>
   </div>
 </main>

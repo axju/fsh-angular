@@ -1,1 +1,7 @@
-<p>snippet-of-day works!</p>
+<h1>Snippet of the day</h1>
+<div class="card mb-3">
+  <h3 class="card-header">{{snippet.title}}</h3>
+  <div class="card-body p-0" [innerHTML]="snippet.highlighted | safeHtml">
+  </div>
+  <div class="card-footer">Footer</div>
+</div>

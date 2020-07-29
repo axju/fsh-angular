@@ -6,6 +6,7 @@ import { SnippetOfDayComponent } from './components/snippet-of-day/snippet-of-da
 const routes: Routes = [
   { path: 'snippets', component: SnippetsComponent },
   { path: 'snippet-of-day', component: SnippetOfDayComponent },
+  { path: '', redirectTo: '/snippet-of-day', pathMatch: 'full' },
 ];
 
 
