@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SnippetsComponent } from './components/snippets/snippets.component';
 import { SafeHtmlPipe } from './safe-html';
+import { SnippetOfDayComponent } from './components/snippet-of-day/snippet-of-day.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SnippetsComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    SnippetOfDayComponent
   ],
   imports: [
     BrowserModule,
