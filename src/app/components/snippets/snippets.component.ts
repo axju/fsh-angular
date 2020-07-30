@@ -19,8 +19,7 @@ export class SnippetsComponent implements OnInit {
   }
 
   getSnippets(): void {
-    this.snippetService.getSnippets()
-    .subscribe(snippets => this.snippets = snippets);
+    this.snippetService.getSnippets().subscribe(snippets => this.snippets = snippets);
   }
 
 }

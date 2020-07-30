@@ -10,10 +10,7 @@
         <a class="nav-link" routerLink="/users" routerLinkActive="active">Heros</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/snippets" routerLinkActive="active">All Snippets</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="logout()">Logout</a>
+        <a class="nav-link" routerLink="/snippets" routerLinkActive="active">Snippets</a>
       </li>
     </ul>
 
@@ -28,12 +25,16 @@
       </li>
 
       <li class="nav-item" *ngIf="currentUser == null">
+        <a class="nav-link" routerLink="/signup" routerLinkActive="active">signup</a>
+      </li>
+
+      <li class="nav-item" *ngIf="currentUser == null">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">login</a>
       </li>
     </ul>
 
   </nav>
-  <div class="container">
+  <div class="container pt-3">
     <router-outlet></router-outlet>
   </div>
 </main>

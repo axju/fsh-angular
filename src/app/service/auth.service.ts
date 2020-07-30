@@ -5,6 +5,8 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import * as jwtDecode from 'jwt-decode';
+
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 
@@ -12,6 +14,7 @@ import { User } from '../models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private currentUserSubject: BehaviorSubject<User>;
+    private apiRoot = `${environment.apiUrl}user/auth/`;
     public currentUser: Observable<User>;
 
     constructor(private http: HttpClient) {
@@ -23,20 +26,34 @@ export class AuthService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}user/auth/`, { username, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
-            }));
+    private get_payload(user: any) {
+      var payload = <User> jwtDecode(user.token);
+      payload.token = user.token
+      localStorage.setItem('currentUser', JSON.stringify(payload));
+      this.currentUserSubject.next(payload);
+      return payload
     }
+
+    login(username: string, password: string) {
+      return this.http.post<any>(this.apiRoot.concat('login/'), { username, password })
+          .pipe(map(user => {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              return this.get_payload(user);
+          }));
+      }
 
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+    }
+
+    signup(username: string, email: string, password1: string, password2: string) {
+      return this.http.post<any>(this.apiRoot.concat('signup/'), { username, email, password1, password2 })
+          .pipe(map(user => {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              return this.get_payload(user);
+          }));
     }
 }
 
@@ -45,17 +62,14 @@ export class AuthService {
 export class AuthGuard implements CanActivate {
     constructor(
         private router: Router,
-        private authenticationService: AuthService
+        private authService: AuthService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const currentUser = this.authenticationService.currentUserValue;
+        const currentUser = this.authService.currentUserValue;
         if (currentUser) {
-            // logged in so return true
             return true;
         }
-
-        // not logged in so redirect to login page with the return url
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
         return false;
     }

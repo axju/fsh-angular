@@ -1,0 +1,21 @@
+<div class="card" *ngIf="snippet">
+  <div class="card-body p-0">
+    <h4 class="card-title mt-3 mx-3 m-0">{{snippet.title}}</h4>
+    <img src="{{'data:image/jpg;base64,' + snippet.highlighted}}" alt="code" style="width:100%" />
+
+    <div class="btn-group btn-group-sm" style="width:100%">
+      <a type="button" class="btn btn-outline-primary">
+        {{snippet.user.username}}
+      </a>
+      <a *ngIf="!id" routerLink="/snippets/{{snippet.id}}" type="button" class="btn btn-outline-primary">
+        Comments <span class="badge">{{snippet.count_comments}}</span>
+      </a>
+      <button *ngIf="id" (click)="goBack()" type="button" class="btn btn-outline-primary">
+        Back
+      </button>
+      <button (click)="like()" type="button" class="btn btn-outline-primary">
+        Likes <span class="badge">{{snippet.count_likes}}</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -8,17 +8,19 @@ import { AppRoutingModule } from './app-routing.module'
 import { JwtInterceptor } from './service/auth.service';
 
 import { SnippetsComponent } from './components/snippets/snippets.component';
-import { SnippetOfDayComponent } from './components/snippet-of-day/snippet-of-day.component';
 import { UsersComponent } from './components/users/users.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { SnippetDetailComponent } from './components/snippet-detail/snippet-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SnippetsComponent,
-    SnippetOfDayComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent,
+    SnippetDetailComponent
   ],
   imports: [
     BrowserModule,
