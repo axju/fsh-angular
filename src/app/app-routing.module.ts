@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SnippetsComponent } from './components/snippets/snippets.component';
-import { SnippetOfDayComponent } from './components/snippet-of-day/snippet-of-day.component';
+import { UsersComponent } from './components/users/users.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './service/auth.service';
 
 const routes: Routes = [
   { path: 'snippets', component: SnippetsComponent },
-  { path: 'snippet-of-day', component: SnippetOfDayComponent },
-  { path: '', redirectTo: '/snippet-of-day', pathMatch: 'full' },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: 'snippets' }
 ];
 
 

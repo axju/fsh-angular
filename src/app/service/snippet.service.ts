@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
 import { Snippet } from '../models/snippet';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Snippet } from '../models/snippet';
 })
 export class SnippetService {
 
-  private URL = 'http://localhost:8000/snippets/';
+  private URL = `${environment.apiUrl}snippets/`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
