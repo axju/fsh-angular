@@ -14,7 +14,7 @@ import { User } from '../models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private currentUserSubject: BehaviorSubject<User>;
-    private apiRoot = `${environment.apiUrl}user/auth/`;
+    private apiRoot = `${environment.apiUrl}auth/`;
     public currentUser: Observable<User>;
 
     constructor(private http: HttpClient) {

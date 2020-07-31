@@ -11,9 +11,7 @@ import { SnippetService }  from '../../service/snippet.service';
   styleUrls: ['./snippet-detail.component.css']
 })
 export class SnippetDetailComponent implements OnInit {
-
-  @Input() snippet: Snippet;
-  id: number;
+  snippet: Snippet;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,16 +20,12 @@ export class SnippetDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    if (!this.snippet) {
-      this.getSnippet();
-    }
-    console.log(this.snippet);
-
+    this.getSnippet();
   }
 
   getSnippet(): void {
-    this.snippetService.getSnippet(this.id).subscribe(snippet => this.snippet = snippet);
+    var id = this.route.snapshot.paramMap.get('id');
+    this.snippetService.getSnippet(id).subscribe(snippet => this.snippet = snippet);
   }
 
   goBack(): void {
@@ -39,9 +33,7 @@ export class SnippetDetailComponent implements OnInit {
   }
 
   like(): void {
-    console.log('thirst:', this.snippet);
     this.snippetService.likeSnippet(this.snippet.id).subscribe(snippet => this.snippet = snippet);
-    console.log('secend:', this.snippet);
   }
 
 }
