@@ -1,5 +1,3 @@
-<div class="card-deck">
-  <ng-template ngFor let-snippet [ngForOf]="snippets">
-    <app-snippet-detail  [snippet]="snippet" ></app-snippet-detail>
-  </ng-template>
+<div *ngFor="let snippet of snippets" class="container-fluid">
+  <app-snippet-detail [snippet]="snippet" ></app-snippet-detail>
 </div>
